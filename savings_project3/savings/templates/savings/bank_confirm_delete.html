@@ -1,0 +1,4 @@
+<form method="post">{% csrf_token %}
+    <p>Czy skasować wskazany bank - "{{ object }}"?</p>
+    <input type="submit" value="Zatwierdź" />
+</form>

@@ -1,0 +1,37 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Bank</th>
+			<th>Nazwa lokaty</th>
+			<th>Okres</th>
+			<th>Wartość</th>			
+			<th>Oprocentowanie</th>
+			<th>Zamknięta</th>	
+			<th>Klient</th>	
+		</tr>
+	</thead>
+	<tbody>
+		{% for deposit in deposits_list %}
+		<tr">
+			<td>{{deposit.bank.abbreviation}}</td>
+			{% if deposit.comment %}
+			<td>{{deposit.name}} <i class="fab fa-font-awesome" title="{{deposit.comment}}"></i></td>
+			{% else %}
+			<td >{{deposit.name}}</td>
+			{% endif %}
+			<td>{{deposit.start_date|date:'Y/m/d'}} - {{deposit.stop_date|date:'Y/m/d'}}</td>
+			<td>{{deposit.value}}</td>
+			<td>{{deposit.interest}}</td>
+			<td>{{deposit.closed}}</td>
+			<td>{{deposit.client}}</td>			
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="6">Brak danych o depozytach</td>
+		</tr>
+		
+		{% endfor%}
+	</tbody>
+
+
+</table>

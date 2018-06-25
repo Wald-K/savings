@@ -1,0 +1,24 @@
+{% extends 'savings/base.html' %}
+
+
+{% block title %}
+	{% if deposit_status == "hold" %}
+	<h1>Depozyty aktywne</h1>
+	{% endif %}
+
+	{% if deposit_status == "history" %}
+	<h1>Depozyty zakończone</h1>
+	{% endif %}
+
+	{% if deposit_status == "all" %}
+	<h1>Depozyty aktywne i zakończone</h1>
+	{% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+
+{% include 'savings/_deposit_list.html' %}
+
+{% endblock %}

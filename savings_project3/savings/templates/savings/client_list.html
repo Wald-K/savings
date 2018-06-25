@@ -1,0 +1,47 @@
+{% extends 'savings/base.html' %}
+
+{% block title %}
+
+<h1>Klienci</h1>
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Imię</th>
+			<th>Nazwisko</th>
+			<th>Depozyty</th>	
+			<th>Operacje</th>		
+		</tr>
+	</thead>
+	<tbody>
+		{% for client in client_list %}
+		<tr>
+			<td>{{client.firstname}}</td>
+			<td>{{client.lastname}}</td>
+			<td>
+				<a href="{% url "savings:client_detail" pk=client.pk %}">{{client.deposit_set.count}}</a>
+			</td>
+			<td>
+				<a href="{% url "savings:client_update" client.id %}">edytuj</a>
+				<a href="{% url "savings:client_delete" client.id %}">usuń</a>
+			</td>
+			
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="3">Brak danych o klientach</td>
+		</tr>
+		{% endfor%}
+	</tbody>
+
+
+</table>
+
+<a href={% url 'savings:client_new' %}>Nowy Klient</a>
+
+
+{% endblock %}

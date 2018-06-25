@@ -1,0 +1,43 @@
+
+{% extends 'savings/base.html' %}
+
+{% block title %}
+
+<h1>Banki</h1>
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover" >
+	<thead>
+		<tr>
+			<th>Nazwa</th>
+			<th>Skrót</th>	
+			<th>Operacje</th>		
+		</tr>
+	</thead>
+	<tbody>
+		{% for bank in object_list %}
+		<tr>
+			<td>{{bank.name}}</td>
+			<td>{{bank.abbreviation}}</td>
+			<td>
+				<a href="{% url "savings:bank_update" bank.id %}">edytuj</a>
+				<a href="{% url "savings:bank_delete" bank.id %}">usuń</a>
+			</td>
+			
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="3">Brak danych o bankach</td>
+		</tr>
+		{% endfor%}
+	</tbody>
+
+
+</table>
+
+<a href=" {% url 'savings:bank_new' %}">Nowy Bank</a>
+
+{% endblock %}

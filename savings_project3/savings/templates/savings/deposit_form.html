@@ -1,0 +1,75 @@
+{% extends 'savings/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+<h1>Nowy Depozyt</h1>
+{% endblock%}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+
+  <div class="form-group">
+    <label <label for="id_name">{{ form.name.label }}</label>
+    {{ form.name|add_class:"form-control "}}
+  </div>
+  <div class="form-group">
+    <label <label for="id_value">{{ form.value.label }}</label>
+    {{ form.value|add_class:"form-control "}}
+  </div>
+  <div class="form-group">
+    <label <label for="id_interest">{{ form.interest.label }}</label>
+    {{ form.interest|add_class:"form-control "}}
+
+  </div>
+  <div class="form-group">
+    <label <label for="id_start_date">{{ form.start_date.label }}</label>
+    {{ form.start_date|add_class:"form-control datepicker"}}
+  </div>
+  <div class="form-group">
+    <label <label for="id_stop_date">{{ form.stop_date.label }}</label>
+    {{ form.stop_date|add_class:"form-control datepicker"}}
+  </div>
+  <div class="form-group">
+    <label <label for="id_comment">{{ form.comment.label }}</label>
+    {{ form.comment|add_class:"form-control "}}
+
+  </div>
+
+
+  <div class="form-group">
+    <label <label for="id_bank">{{ form.bank.label }}</label>
+    {{ form.bank|add_class:"custom-select"}}
+  </div>
+  <div class="form-group">
+    <label <label for="id_client">{{ form.client.label }}</label>
+    {{ form.client|add_class:"custom-select"}}
+  </div>
+  <div class="form-check">
+    {{ form.closed|add_class:"form-check-input" }}
+    <label class="form-check-label" for="id_closed">{{ form.closed.label }}</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+
+            <div class="alert alert-danger">
+                <strong>{{field.label}} - {{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+{% endblock %}
+

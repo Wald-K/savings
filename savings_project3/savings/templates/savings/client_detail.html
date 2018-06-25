@@ -1,0 +1,18 @@
+{% extends 'savings/base.html' %}
+
+{% block title %}
+
+<h1>{{object.firstname}}
+{{object.lastname}}</h1>
+
+{% endblock %}
+
+{% block content %}
+
+<p>Lokaty klienta:</p>
+
+{% include 'savings/_deposit_list.html' %}
+
+
+
+{% endblock %}
