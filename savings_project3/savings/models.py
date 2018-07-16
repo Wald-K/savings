@@ -8,7 +8,7 @@ from django.utils import timezone
 
 
 class Bank(models.Model):
-    name = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 50)
     abbreviation = models.CharField(max_length = 8)
     def __str__(self):
         return self.name
