@@ -54,7 +54,6 @@ def client_list(request):
 
 def client_create(request):
 	form = ClientForm(request.POST or None)
-
 	if form.is_valid():
 		form.save()
 		return redirect('savings:client_list')
@@ -64,6 +63,7 @@ def client_create(request):
 def client_update(request, pk):
 	client = get_object_or_404(Client, pk=pk)
 	form = ClientForm(request.POST or None, instance = client)
+
 
 	if form.is_valid():
 		form.save()
@@ -108,21 +108,37 @@ def deposit_create(request):
 		form.save()
 		return redirect('savings:deposit_list', deposit_status = 'hold')
 	else:
-		return render(request, 'savings/deposit_form.html',{'form': form} )
+		return render(request, 'savings/deposit_form.html', {'form': form} )
+
+
+def deposit_create_for_client(request, client_pk):
+	# client = get_object_or_404(Client, pk=pk)
+	form = DepositForm(request.POST or None)
+
+	if form.is_valid():
+		form.save()
+		return redirect('savings:deposit_list', deposit_status='hold')
+	else:
+		# ustawiamy klienta w formularzu
+		form.fields["client"].initial = client_pk
+		# chcemy aby pole klienta w formularzu nie było do edycji
+		form.fields["client"].widget.attrs["disabled"] = 'disabled'
+		return render(request, 'savings/deposit_form.html', {'form': form} )
 
 
 
-
-	# form = ClientForm(request.POST or None)
-
-	# if form.is_valid():
-	# 	form.save()
-	# 	return redirect('savings:client_list')
-	# else:
-	# 	return render(request, 'savings/client_form.html', {'form': form})
 
 
 class DepositCreate(CreateView):
 	model = Deposit
 	fields = '__all__'
 	success_url = reverse_lazy('savings:deposit_list', kwargs={'deposit_status': 'hold'})
+
+
+# nie działa
+class DepositCreateForClient(CreateView):
+	model = Deposit
+	# fields = '__all__'
+	form_class = DepositForm
+	success_url = reverse_lazy('savings:deposit_list', kwargs={'deposit_status': 'hold'})
+

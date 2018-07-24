@@ -13,6 +13,6 @@
 
 {% include 'savings/_deposit_list.html' %}
 
-
+<a href="{% url "savings:deposit_new_for_client" object.id %}">Dodaj depozyt</a>
 
 {% endblock %}

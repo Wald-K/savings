@@ -15,3 +15,4 @@ class DepositForm(ModelForm):
     class Meta:
         model = Deposit
         fields = '__all__'
+

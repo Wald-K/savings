@@ -10,4 +10,6 @@ local_settings.py
 db.sqlite3
 media
 
-venv3/
+venv/
+migrations/
+.idea/

@@ -26,7 +26,7 @@ class Deposit(models.Model):
     interest = models.DecimalField(max_digits = 4, decimal_places = 2)
     start_date = models.DateField()
     stop_date = models.DateField()
-    comment = models.TextField(max_length = 100)
+    comment = models.TextField(max_length = 100, blank = True)
     closed = models.BooleanField(default = False)  # czy zamknięta
     bank = models.ForeignKey(Bank, on_delete = models.CASCADE)
     client = models.ForeignKey(Client, on_delete = models.CASCADE)
