@@ -2,11 +2,11 @@
 
 
 {% block title %}
-	{% if deposit_status == "hold" %}
+	{% if deposit_status == "opened" %}
 	<h1>Depozyty aktywne</h1>
 	{% endif %}
 
-	{% if deposit_status == "history" %}
+	{% if deposit_status == "closed" %}
 	<h1>Depozyty zakończone</h1>
 	{% endif %}
 

@@ -90,10 +90,10 @@ def client_delete(request, pk):
 
 
 def deposit_list(request, deposit_status):
-	if deposit_status == 'hold':
-		deposits = Deposit.objects.filter(closed = False)
-	elif deposit_status == 'history':
-		deposits = Deposit.objects.filter(closed = True)
+	if deposit_status == 'opened':
+		deposits = Deposit.objects.filter(opened = True)
+	elif deposit_status == 'closed':
+		deposits = Deposit.objects.filter(opened = False)
 	elif deposit_status == 'all':
 		deposits = Deposit.objects.all()
 
