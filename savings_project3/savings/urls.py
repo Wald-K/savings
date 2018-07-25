@@ -35,6 +35,8 @@ urlpatterns = [
     # new deposit for particular client - but class view
     # path('clients/<int:client_pk>/deposits/new/', views.DepositCreateForClient.as_view(), name='deposit_new_for_client_as_class_view'),
 
+    # zamykanie depozytu
+    path('deposits/<int:pk>/close/', views.deposit_close, name='deposit_close'),
 ]
 
 

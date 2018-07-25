@@ -106,9 +106,14 @@ def deposit_create(request):
 
 	if form.is_valid():
 		form.save()
-		return redirect('savings:deposit_list', deposit_status = 'hold')
+		return redirect('savings:deposit_list', deposit_status='opened')
 	else:
 		return render(request, 'savings/deposit_form.html', {'form': form} )
+
+class DepositCreate(CreateView):
+	model = Deposit
+	fields = '__all__'
+	success_url = reverse_lazy('savings:deposit_list', kwargs={'deposit_status': 'opened'})
 
 
 def deposit_create_for_client(request, client_pk):
@@ -117,28 +122,26 @@ def deposit_create_for_client(request, client_pk):
 
 	if form.is_valid():
 		form.save()
-		return redirect('savings:deposit_list', deposit_status='hold')
+		return redirect('savings:deposit_list', deposit_status='opened')
 	else:
 		# ustawiamy klienta w formularzu
 		form.fields["client"].initial = client_pk
-		# chcemy aby pole klienta w formularzu nie było do edycji
-		form.fields["client"].widget.attrs["disabled"] = 'disabled'
+		# chcemy aby pole klienta w formularzu nie było do edycji - nie działa
+		# form.fields["client"].widget.attrs["disabled"] = 'disabled'
 		return render(request, 'savings/deposit_form.html', {'form': form} )
 
 
+def deposit_close(request, pk):
+	deposit = get_object_or_404(Deposit, pk=pk)
+
+	if request.method=='POST':
+		deposit.opened = False
+		deposit.save()
+		return redirect('savings:deposit_list', deposit_status='all')
+	return render(request, 'savings/deposit_confirm_close.html', {'deposit': deposit})
 
 
 
-class DepositCreate(CreateView):
-	model = Deposit
-	fields = '__all__'
-	success_url = reverse_lazy('savings:deposit_list', kwargs={'deposit_status': 'hold'})
 
 
-# nie działa
-class DepositCreateForClient(CreateView):
-	model = Deposit
-	# fields = '__all__'
-	form_class = DepositForm
-	success_url = reverse_lazy('savings:deposit_list', kwargs={'deposit_status': 'hold'})
 

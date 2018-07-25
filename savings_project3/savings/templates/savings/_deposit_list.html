@@ -23,8 +23,14 @@
 			<td>{{deposit.start_date|date:'Y/m/d'}} - {{deposit.stop_date|date:'Y/m/d'}}</td>
 			<td>{{deposit.value}}</td>
 			<td>{{deposit.interest}}</td>
-			<td>{{deposit.opened}} <i class="fas fa-times-circle"></i></td>
-			<td>{{deposit.client}}</td>			
+			{% if deposit.opened %}
+				<td><i class="far fa-check-circle"></i>&nbsp
+					<a href="{% url "savings:deposit_close" deposit.id %}">Zamknij</a>
+				</td>
+			{% else %}
+				<td><i class="fas fa-times-circle"></i></td>
+			{% endif %}
+			<td>{{deposit.client}}</td>
 		</tr>
 		{% empty %}
 		<tr>

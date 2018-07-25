@@ -20,6 +20,12 @@ class Client(models.Model):
     def __str__(self):
         return (self.lastname + " " + self.firstname)
 
+    def get_opened_deposit_count(self):
+        return len(self.deposit_set.filter(opened=True))
+
+    def get_closed_deposit_count(self):
+        return len(self.deposit_set.filter(opened=False))
+
 class Deposit(models.Model):
     name = models.CharField(max_length = 40)
     value = models.IntegerField()
@@ -32,7 +38,7 @@ class Deposit(models.Model):
     client = models.ForeignKey(Client, on_delete = models.CASCADE)
 
     def __str__(self):
-        return (self.bank.name + " (" + str(self.start_date) + " - " + str(self.stop_date) + ")" )
+        return (str(self.client) + " - " + self.bank.name + " (" + str(self.start_date) + " - " + str(self.stop_date) + ")" )
 
     def isExpired(self):
         return self.stop_date >= timezone.now().date()
