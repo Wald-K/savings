@@ -88,6 +88,7 @@ def client_delete(request, pk):
 
 	return render(request, 'savings/client_confirm_delete.html', {'object':client})
 
+# Deposit Views - method views
 
 def deposit_list(request, deposit_status):
 	if deposit_status == 'opened':

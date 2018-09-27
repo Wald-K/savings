@@ -27,6 +27,7 @@ urlpatterns = [
 
     # proba z deposit_new as function
     path('deposits/new/', views.deposit_create, name='deposit_new'),
+
     path('deposits/<str:deposit_status>/', views.deposit_list, name='deposit_list'),
 
     # new deposit for particular client
