@@ -26,6 +26,9 @@ class Client(models.Model):
     def get_closed_deposit_count(self):
         return len(self.deposit_set.filter(opened=False))
 
+    def get_all_deposit_count(self):
+        return len(self.deposit_set.all())
+
 class Deposit(models.Model):
     name = models.CharField(max_length = 40)
     value = models.IntegerField()
