@@ -23,11 +23,12 @@
 			<td>{{client.firstname}}</td>
 			<td>{{client.lastname}}</td>
 			<td>
-				<!--<a href="{% url "savings:client_detail" pk=client.pk %}">{{client.deposit_set.all.count}}</a>-->
-				<a href="{% url "savings:client_detail" pk=client.pk %}">{{client.get_opened_deposit_count}} z {{client.get_all_deposit_count}} </a>
+				<!--<a href="{% url "savings:client_detail" pk=client.pk %}">{{client.get_opened_deposit_count}} z {{client.get_all_deposit_count}} </a>-->
+               {{client.get_opened_deposit_count}} z {{client.get_all_deposit_count}}
 			</td>
 			<td>
-				<a href="{% url "savings:client_update" client.id %}">edytuj</a>
+				<a href="{% url "savings:client_detail" pk=client.pk %}">szczegóły</a> |
+				<a href="{% url "savings:client_update" client.id %}">edytuj</a> |
 				<a href="{% url "savings:client_delete" client.id %}">usuń</a>
 			</td>
 			
