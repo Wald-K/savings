@@ -38,6 +38,9 @@ urlpatterns = [
 
     # zamykanie depozytu
     path('deposits/<int:pk>/close/', views.deposit_close, name='deposit_close'),
+
+    # całkowite usuwanie depozytu
+    path('deposits/<int:pk>/delete/', views.deposit_delete, name='deposit_delete'),
 ]
 
 
