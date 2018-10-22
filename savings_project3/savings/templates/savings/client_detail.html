@@ -2,8 +2,8 @@
 
 {% block title %}
 
-<h1>{{object.firstname}}
-{{object.lastname}}</h1>
+<h1>{{client.firstname}}
+{{client.lastname}}</h1>
 
 {% endblock %}
 
@@ -13,6 +13,6 @@
 
 {% include 'savings/_deposit_list.html' %}
 
-<a href="{% url "savings:deposit_new_for_client" object.id %}">Dodaj depozyt</a>
+<a href="{% url "savings:deposit_new_for_client" client.id %}">Dodaj depozyt</a>
 
 {% endblock %}

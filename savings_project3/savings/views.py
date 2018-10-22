@@ -75,9 +75,7 @@ def client_update(request, pk):
 def client_detail(request, pk):
     client = get_object_or_404(Client, pk=pk)
     deposits_list = client.deposit_set.all().order_by('id')
-
-
-    return render(request, 'savings/client_detail.html', {'object':client, 'deposits_list': deposits_list})
+    return render(request, 'savings/client_detail.html', {'client':client, 'deposits_list': deposits_list})
 
 def client_delete(request, pk):
     client = get_object_or_404(Client, pk=pk)
@@ -86,7 +84,7 @@ def client_delete(request, pk):
         client.delete()
         return redirect('savings:client_list')
 
-    return render(request, 'savings/client_confirm_delete.html', {'object':client})
+    return render(request, 'savings/client_confirm_delete.html', {'client':client})
 
 # Deposit Views - method views
 
