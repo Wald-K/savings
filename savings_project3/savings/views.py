@@ -11,8 +11,8 @@ from .models import Client, Bank, Deposit
 
 from .forms import ClientForm, DepositForm
 
-def test(request):
-    return render(request, 'savings/test.html', {'test':'Testy'})
+def index(request):
+    return render(request, 'savings/index.html', {'test':'Testy'})
 
 
 # Create your views here.

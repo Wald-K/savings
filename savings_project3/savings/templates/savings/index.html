@@ -1,0 +1,17 @@
+{% extends 'savings/base.html' %}
+
+{% block title %}
+<h1>Menu</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="list-group">
+  <a href="{% url 'savings:bank_list' %}" class="list-group-item list-group-item-action list-group-item-danger">Lista banków</a>
+  <a href="{% url 'savings:client_list' %}" class="list-group-item list-group-item-action list-group-item-primary">Lista klientów</a>
+  <a href="{% url 'savings:deposit_list' deposit_status='all' %}" class="list-group-item list-group-item-action list-group-item-secondary">Lista depozytów</a>
+
+</div>
+
+
+{% endblock %}
